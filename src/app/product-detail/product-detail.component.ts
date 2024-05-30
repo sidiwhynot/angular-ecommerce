@@ -7,32 +7,29 @@ import { CarouselModule } from 'primeng/carousel';
 import { ProductsService } from '../produit/service/products.service';
 import { ActivatedRoute } from '@angular/router';
 
-
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [IonicModule ,CommonModule,CarouselModule ],
+  imports: [IonicModule, CommonModule, CarouselModule],
   templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.css'
+  styleUrl: './product-detail.component.css',
 })
-
 export class ProductDetailComponent implements OnInit {
-
   productId!: number;
   productDetails!: Product;
   status = false;
 
-    // Déclarez une variable pour stocker l'index de l'image principale
-    currentImageIndex: number = 0;
+  // Déclarez une variable pour stocker l'index de l'image principale
+  currentImageIndex: number = 0;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductsService
-  ) { }
+  ) {}
 
   ngOnInit() {
     // Get the productId from the route parameters
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       this.productId = +params['productId']; // The '+' is used to convert the string to a number
       this.fetchProductDetails();
     });
@@ -48,7 +45,7 @@ export class ProductDetailComponent implements OnInit {
         this.productDetails = response;
         console.log(response);
       },
-      error => {
+      (error) => {
         console.error('Error fetching product details:', error);
       }
     );

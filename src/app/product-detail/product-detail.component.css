@@ -1,289 +1,285 @@
-body{margin-top:20px;
-    background:#eee;
-    }
-
-
-.container{
-    margin-top: 20px;
-    margin-bottom: 50px;
+body {
+  margin-top: 20px;
+  background: #eee;
 }
-    
-    /*panel*/
-    .panel {
-        border: none;
-        box-shadow: none;
-    }
-    
-    .panel-heading {
-        border-color:#eff2f7 ;
-        font-size: 16px;
-        font-weight: 300;
-    }
-    
-    .panel-title {
-        color: #2A3542;
-        font-size: 14px;
-        font-weight: 400;
-        margin-bottom: 0;
-        margin-top: 0;
-        font-family: 'Open Sans', sans-serif;
-    }
 
+.container {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
 
-    /*///////////*/
-    .panel-body {
-        display: flex;
-    }
-    
-    .pro-img-details,
-    .pro-img-list {
-        flex: 1;
-        margin-right: 20px;
+/*panel*/
+.panel {
+  border: none;
+  box-shadow: none;
+}
 
-    }
-    
-    
-    .col-md-6 {
-        flex: 1;
-    }
-    
-    .product_meta {
-        margin-top: 20px;
-    }
-    
-   /* .product_meta span {
+.panel-heading {
+  border-color: #eff2f7;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.panel-title {
+  color: #2a3542;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+/*///////////*/
+.panel-body {
+  display: flex;
+}
+
+.pro-img-details,
+.pro-img-list {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col-md-6 {
+  flex: 1;
+}
+
+.product_meta {
+  margin-top: 20px;
+}
+
+/* .product_meta span {
         margin-bottom: 5px;
     }*/
-    
-    .pro-price {
-        color: #fc5959;
-        font-size: 20px;
-    }
-    
-    
-    
-    .pro-img-list a img {
-        max-width: 80px; /* Ajuster la taille des images dans la liste */
-        max-height: 80px;
-    }
-    /*//////////////*/
-    
-    /*product list*/
-    
-    .prod-cat li a{
-        border-bottom: 1px dashed #d9d9d9;
-    }
-    
-    .prod-cat li a {
-        color: #3b3b3b;
-    }
-    
-    .prod-cat li ul {
-        margin-left: 30px;
-    }
-    
-    .prod-cat li ul li a{
-        border-bottom:none;
-    }
-    .prod-cat li ul li a:hover,.prod-cat li ul li a:focus, .prod-cat li ul li.active a , .prod-cat li a:hover,.prod-cat li a:focus, .prod-cat li a.active{
-        background: none;
-        color: #ff7261;
-    }
-    
-    .pro-lab{
-        margin-right: 20px;
-        font-weight: normal;
-    }
-    
-    .pro-sort {
-        padding-right: 20px;
-        float: left;
-    }
-    
-    .pro-page-list {
-        margin: 5px 0 0 0;
-    }
-    
-    .product-list img{
-        width: 100%;
-        border-radius: 4px 4px 0 0;
-        -webkit-border-radius: 4px 4px 0 0;
-    }
-    
-    .product-list .pro-img-box {
-        position: relative;
-    }
-    .adtocart {
-        background: #fc5959;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        color: #fff;
-        display: inline-block;
-        text-align: center;
-        border: 3px solid #fff;
-        left: 45%;
-        bottom: -25px;
-        position: absolute;
-    }
-    
-    .adtocart i{
-        color: #fff;
-        font-size: 25px;
-        line-height: 42px;
-    }
-    
-    .pro-title {
-        color: #5A5A5A;
-        display: inline-block;
-        margin-top: 20px;
-        font-size: 16px;
-    }
-    .product-image{
-        width: 100px; /* Définissez la largeur souhaitée */
-        height: 400px; /* Ajustez la hauteur en conséquence pour conserver les proportions */
-    }
-    .product-list .price {
-        color:#fc5959 ;
-        font-size: 15px;
-    }
-    
-    .pro-img-details {
-        margin-left: -15px;
-    }
-    
-    .pro-img-details img {
-        width: 100%;
-    }
-    
-    .pro-d-title {
-        font-size: 16px;
-        margin-top: 0;
-    }
-    
-    .product_meta {
-        border-top: 1px solid #eee;
-        border-bottom: 1px solid #eee;
-        padding: 10px 0;
-        margin: 15px 0;
-    }
-    
-    .product_meta span {
-        display: block;
-        margin-bottom: 10px;
-    }
 
-    
-    .quantity {
-        width: 120px;
-    }
-    
-    .pro-img-list {
-        margin: 10px 0 0 -15px;
-        width: 100%;
-        display: inline-block;
-    }
-    
-    .pro-img-list a {
-        display: inline-block; /* Pour que les liens d'image se comportent comme des blocs */
-        max-width: 100px; /* Largeur maximale des images */
-        max-height: 100px; /* Hauteur maximale des images */
-        overflow: hidden; /* Masquer tout débordement d'image */
-        margin-right: 10px; /* Marge entre les images */
-    }
-    
-    .pro-d-head {
-        font-size: 18px;
-        font-weight: 300;
-    }
-    .custom-border {
-        width : 100%;
-        border-radius: 10px; /* Coins arrondis */
-        padding: 10px 20px; /* Espace de remplissage */
-        color: #fff; /* Couleur du texte */
-        background-color: #38a543; /* Couleur de fond */
-        transition: all 0.3s ease; /* Animation de transition */
-      }
+.pro-price {
+  color: #fc5959;
+  font-size: 20px;
+}
 
-      .custom-border2 {
-        width : 100%;
-        border: 1px solid #38a543;
-        border-radius: 10px; /* Coins arrondis */
-        padding: 10px 20px; /* Espace de remplissage */
-        color: #38a543; /* Couleur du texte */
-        background-color: #fff; /* Couleur de fond */
-        transition: all 0.3s ease; /* Animation de transition */
-      }
-      
-      
+.pro-img-list a img {
+  max-width: 80px; /* Ajuster la taille des images dans la liste */
+  max-height: 80px;
+}
+/*//////////////*/
 
+/*product list*/
 
-      .title {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        font-size: 1.2rem;
-        max-width: 100%; /* Limiter la largeur du titre à 100% de son conteneur */
-        overflow: hidden; /* Masquer tout contenu dépassant de la zone */
-        text-overflow: ellipsis; /* Ajouter des points de suspension pour indiquer qu'il y a plus de contenu que ce qui est visible */
-        white-space: nowrap; /* Empêcher le texte de se mettre à la ligne */
-    }
+.prod-cat li a {
+  border-bottom: 1px dashed #d9d9d9;
+}
 
-    .product-box {
-        border: 1px solid #ccc; /* Bordure de la boîte */
-        border-radius: 5px; /* Coins arrondis */
-        padding: 15px; /* Espace intérieur */
-        margin-bottom: 20px; /* Marge inférieure */
-        position: relative; /* Permet de positionner des éléments en absolu à l'intérieur */
-    }
+.prod-cat li a {
+  color: #3b3b3b;
+}
 
-    .d-flex {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: relative; /* Permet de positionner le prix en absolu */
-    }
-      
-      .product_meta .d-flex {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      
-      .pro-d-title {
-        margin-bottom: 0; /* Enlevez la marge inférieure par défaut */
-      }
-      .pro-price {
-        font-size: 1.2em;
-        font-weight: bold;
-        color: #fff; /* Couleur du prix */
-        border: 1px solid #fd7e14; /* Bordure de 2px de large, couleur #333 */
-        border-radius: 10px;
-        padding: 5px 20px; /* Espace intérieur du prix */
-        background-color: #fd7e14; /* Fond blanc pour le prix */
-        position: absolute; /* Positionne le prix par rapport à .d-flex */
-        top: 0; /* Aligne le prix en haut de .d-flex */
-        right: 0; /* Aligne le prix à droite de .d-flex */
-    }
+.prod-cat li ul {
+  margin-left: 30px;
+}
 
-      .name {
-        font-size: 1.4em;
-        font-weight: bold;
-        margin-right: 15px;
-      }
-      
+.prod-cat li ul li a {
+  border-bottom: none;
+}
+.prod-cat li ul li a:hover,
+.prod-cat li ul li a:focus,
+.prod-cat li ul li.active a,
+.prod-cat li a:hover,
+.prod-cat li a:focus,
+.prod-cat li a.active {
+  background: none;
+  color: #ff7261;
+}
 
-      .xp-social-profile-avatar {
-        position: relative; /* Permet de positionner les éléments en absolu à l'intérieur */
-        margin: 0 auto; /* Centre l'avatar horizontalement */
-    }
-    
-    .profile-image {
-        width: 100px; /* Largeur de l'image réduite */
-        height: 100px; /* Hauteur de l'image réduite */
-        object-fit: cover; /* Assure que l'image couvre le conteneur sans déformer */
-        border: 3px solid #fff; /* Bordure blanche autour de l'image */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère autour de l'image */
-    }
+.pro-lab {
+  margin-right: 20px;
+  font-weight: normal;
+}
 
-    
+.pro-sort {
+  padding-right: 20px;
+  float: left;
+}
+
+.pro-page-list {
+  margin: 5px 0 0 0;
+}
+
+.product-list img {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  -webkit-border-radius: 4px 4px 0 0;
+}
+
+.product-list .pro-img-box {
+  position: relative;
+}
+.adtocart {
+  background: #fc5959;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  border: 3px solid #fff;
+  left: 45%;
+  bottom: -25px;
+  position: absolute;
+}
+
+.adtocart i {
+  color: #fff;
+  font-size: 25px;
+  line-height: 42px;
+}
+
+.pro-title {
+  color: #5a5a5a;
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 16px;
+}
+.product-image {
+  width: 100px; /* Définissez la largeur souhaitée */
+  height: 400px; /* Ajustez la hauteur en conséquence pour conserver les proportions */
+}
+.product-list .price {
+  color: #fc5959;
+  font-size: 15px;
+}
+
+.pro-img-details {
+  margin-left: -15px;
+}
+
+.pro-img-details img {
+  width: 100%;
+}
+
+.pro-d-title {
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.product_meta {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  margin: 15px 0;
+}
+.posted_in {
+  font-size: 0.7rem;
+}
+
+.product_meta span {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.quantity {
+  width: 120px;
+}
+
+.pro-img-list {
+  margin: 10px 0 0 -15px;
+  width: 100%;
+  display: inline-block;
+}
+
+.pro-img-list a {
+  display: inline-block; /* Pour que les liens d'image se comportent comme des blocs */
+  max-width: 100px; /* Largeur maximale des images */
+  max-height: 100px; /* Hauteur maximale des images */
+  overflow: hidden; /* Masquer tout débordement d'image */
+  margin-right: 10px; /* Marge entre les images */
+}
+
+.pro-d-head {
+  font-size: 18px;
+  font-weight: 300;
+}
+.custom-border {
+  width: 100%;
+  border-radius: 10px; /* Coins arrondis */
+  padding: 10px 20px; /* Espace de remplissage */
+  color: #fff; /* Couleur du texte */
+  background-color: #38a543; /* Couleur de fond */
+  transition: all 0.3s ease; /* Animation de transition */
+}
+
+.custom-border2 {
+  width: 100%;
+  border: 1px solid #38a543;
+  border-radius: 10px; /* Coins arrondis */
+  padding: 10px 20px; /* Espace de remplissage */
+  color: #38a543; /* Couleur du texte */
+  background-color: #fff; /* Couleur de fond */
+  transition: all 0.3s ease; /* Animation de transition */
+}
+
+.title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  max-width: 100%; /* Limiter la largeur du titre à 100% de son conteneur */
+  overflow: hidden; /* Masquer tout contenu dépassant de la zone */
+  text-overflow: ellipsis; /* Ajouter des points de suspension pour indiquer qu'il y a plus de contenu que ce qui est visible */
+  white-space: nowrap; /* Empêcher le texte de se mettre à la ligne */
+}
+
+.product-box {
+  border: 1px solid #ccc; /* Bordure de la boîte */
+  border-radius: 5px; /* Coins arrondis */
+  padding: 15px; /* Espace intérieur */
+  margin-bottom: 20px; /* Marge inférieure */
+  position: relative; /* Permet de positionner des éléments en absolu à l'intérieur */
+}
+
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /* Permet de positionner le prix en absolu */
+}
+
+.product_meta .d-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pro-d-title {
+  margin-bottom: 0; /* Enlevez la marge inférieure par défaut */
+}
+.pro-price {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fff; /* Couleur du prix */
+  border: 1px solid #fd7e14; /* Bordure de 2px de large, couleur #333 */
+  border-radius: 10px;
+  padding: 5px 20px; /* Espace intérieur du prix */
+  background-color: #fd7e14; /* Fond blanc pour le prix */
+  position: absolute; /* Positionne le prix par rapport à .d-flex */
+  top: 0; /* Aligne le prix en haut de .d-flex */
+  right: 0; /* Aligne le prix à droite de .d-flex */
+}
+
+.name {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.xp-social-profile-avatar {
+  position: relative; /* Permet de positionner les éléments en absolu à l'intérieur */
+  margin: 0 auto; /* Centre l'avatar horizontalement */
+}
+
+.profile-image {
+  width: 100px; /* Largeur de l'image réduite */
+  height: 100px; /* Hauteur de l'image réduite */
+  object-fit: cover; /* Assure que l'image couvre le conteneur sans déformer */
+  border: 3px solid #fff; /* Bordure blanche autour de l'image */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère autour de l'image */
+}
