@@ -10,14 +10,14 @@ import { ProductsService } from './service/products.service';
 @Component({
   selector: 'app-produit',
   standalone: true,
-  imports: [RouterModule, NgFor ,CommonModule],
+  imports: [RouterModule, NgFor, CommonModule],
   templateUrl: './produit.component.html',
-  styleUrls: ['./produit.component.css']
+  styleUrls: ['./produit.component.css'],
 })
 export class ProduitComponent implements OnInit {
   pagedProducts: any[] = [];
   currentPage = 1;
-  rows = 50; 
+  rows = 50;
   totalProducts = 0;
   categoryId: number | undefined;
   pages: number[] = [];
@@ -30,9 +30,8 @@ export class ProduitComponent implements OnInit {
     private searchService: SearchService
   ) {}
 
-
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       const categoryIdParam = params.get('categoryId');
       if (categoryIdParam) {
         const categoryId = Number(categoryIdParam);
@@ -55,9 +54,16 @@ export class ProduitComponent implements OnInit {
     let productsObservable: Observable<any>;
 
     if (categoryId === 0) {
-      productsObservable = this.productService.getAllProductsPaged(this.currentPage - 1, this.rows);
+      productsObservable = this.productService.getAllProductsPaged(
+        this.currentPage - 1,
+        this.rows
+      );
     } else {
-      productsObservable = this.productService.getAllProductsBySubCategoryId(categoryId, this.currentPage - 1, this.rows);
+      productsObservable = this.productService.getAllProductsBySubCategoryId(
+        categoryId,
+        this.currentPage - 1,
+        this.rows
+      );
     }
 
     productsObservable.subscribe(
@@ -66,7 +72,7 @@ export class ProduitComponent implements OnInit {
         this.totalProducts = response.meta.total;
         this.calculatePages();
       },
-      error => {
+      (error) => {
         console.error('Error fetching products:', error);
       }
     );
@@ -100,5 +106,8 @@ export class ProduitComponent implements OnInit {
 
   redirectToAddProduct() {
     this.router.navigateByUrl('/add');
+  }
+  formatPrice(price: number): string {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   }
 }
