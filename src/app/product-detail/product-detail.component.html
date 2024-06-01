@@ -1,60 +1,103 @@
 <div class="container bootdey">
-
-    <div class="row">
-      <!-- Section image principale et autres images -->
-      <div class="col-lg-6 col-md-12">
-        <section class="panel">
-          <div class="panel-body">
-            <div class="pro-img-details">
-              <!-- Utilisation de la première image du backend comme image principale -->
-              <img *ngIf="productDetails?.images && productDetails.images.length > 0"
-                   [src]="productDetails.images[currentImageIndex].imageUrl"
-                   [alt]="productDetails.images[currentImageIndex].alt"
-                   class="product-image img-fluid"
-                   style="margin-left: 15px; margin-top: 10px;">
-            </div>
+  <div class="row">
+    <!-- Section image principale et autres images -->
+    <div class="col-lg-6 col-md-12">
+      <section class="panel">
+        <div class="panel-body">
+          <div class="pro-img-details">
+            <!-- Utilisation de la première image du backend comme image principale -->
+            <img
+              *ngIf="productDetails?.images && productDetails.images.length > 0"
+              [src]="productDetails.images[currentImageIndex].imageUrl"
+              [alt]="productDetails.images[currentImageIndex].alt"
+              class="product-image img-fluid"
+              style="margin-left: 15px; margin-top: 10px"
+            />
           </div>
-        </section>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="pro-img-list" style="margin-left: 2px;">
-              <!-- Affichage des autres images du backend -->
-              <ng-container *ngIf="productDetails?.images && productDetails.images.length > 1">
-                <a *ngFor="let image of productDetails.images; let i = index" (click)="changeMainImage(i)">
-                  <img [src]="image.imageUrl" [alt]="image.alt" class="product-image img-fluid" style="cursor: pointer;">
-                </a>
-              </ng-container>
-            </div>
+        </div>
+      </section>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="pro-img-list" style="margin-left: 2px">
+            <!-- Affichage des autres images du backend -->
+            <ng-container
+              *ngIf="productDetails?.images && productDetails.images.length > 1"
+            >
+              <a
+                *ngFor="let image of productDetails.images; let i = index"
+                (click)="changeMainImage(i)"
+              >
+                <img
+                  [src]="image.imageUrl"
+                  [alt]="image.alt"
+                  class="product-image img-fluid"
+                  style="cursor: pointer"
+                />
+              </a>
+            </ng-container>
           </div>
         </div>
       </div>
-      <!-- Section détails du produit -->
-      <div class="col-lg-6 col-md-12">
-        <div class="card product-box">
-            <div class="d-flex justify-content-between align-items-center">
-                <strong class="name">{{ productDetails?.name }}</strong>
-                <span class="pro-price">{{ productDetails?.price }} MRU</span>
-            </div>
-          <div class="card-body">
-            <div class="product_meta">
+    </div>
+    <!-- Section détails du produit -->
+    <div class="col-lg-6 col-md-12">
+      <div class="card product-box">
+        <div class="d-flex justify-content-between align-items-center">
+          <strong class="name" style="font-size: 25px">{{
+            productDetails?.name
+          }}</strong>
+          <span class="pro-price"
+            >{{ this.formatPrice(productDetails?.price) }} MRU</span
+          >
+        </div>
+        <div class="card-body">
+          <div class="product_meta">
             <div>
-      
-              <p> <i class="fa-solid fa-location-dot fa-beat" style="color: #fd7e14;"> </i> {{ productDetails?.region }} , {{ productDetails?.subRegion }}</p>
+              <strong class="posted_in" style="font-size: 0.9em">{{
+                productDetails?.subCategory
+              }}</strong>
             </div>
-     
+
             <div class="product_meta">
-              <span class="posted_in">
-                <strong>date : {{ productDetails?.createDate }}</strong>
+              <span class="posted_in" style="font-size: 0.9em">
+                <strong>{{ productDetails?.createDate | date }}</strong>
               </span>
-              <span class="tagged_as">
-                <strong>Vue : {{ productDetails?.hit }}</strong>
+              <span class="tagged_as" style="font-size: 0.9em">
+                <strong>Vue {{ productDetails?.hit }}</strong>
               </span>
+              <span class="tagged_as" style="font-size: 0.7em"
+                ><strong
+                  ><p>
+                    <i
+                      class="fa-solid fa-location-dot fa-beat"
+                      style="color: #fd7e14"
+                    >
+                    </i>
+                    {{ productDetails?.region }} ,
+                    {{ productDetails?.subRegion }}
+                  </p></strong
+                ></span
+              >
             </div>
-            <p >
-              <button class="btn btn-round custom-border" type="button"><i class="fa fa-phone"></i> Numéro de téléphone :  {{ productDetails?.vendorDetails?.phoneNumber }}</button>
+            <p>
+              <button class="btn btn-round custom-border" type="button">
+                <span style="font-size: 30px"
+                  ><i class="fa fa-phone"></i>
+                  {{ productDetails?.vendorDetails?.phoneNumber }}</span
+                >
+              </button>
             </p>
-           <p>
-            <button class="btn btn-round custom-border2" type="button"><i class="fa-brands fa-square-whatsapp"></i> Numéro WhatsApp :  {{ productDetails?.vendorDetails?.whatsappNumber }}</button>
+            <p>
+              <button class="btn btn-round custom-border2" type="button">
+                <span style="font-size: 30px">
+                  <i class="fa-brands fa-square-whatsapp"></i>
+                  {{
+                    productDetails?.vendorDetails?.whatsappNumber
+                      ? ""
+                      : "36537673"
+                  }}</span
+                >
+              </button>
             </p>
           </div>
         </div>
@@ -62,89 +105,83 @@
     </div>
 
     <div class="col-lg-6 col-md-12">
-        <div class="card product-box">
+      <div class="card product-box">
+        <div>
+          <strong>Description :</strong>
+          <div class="card-body">
+            <p>{{ productDetails?.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-            <div>
-                <strong>Description :</strong>
-                <div class="card-body">
-                <p>{{ productDetails?.description }}</p>
+    <div class="col-md-6">
+      <div class="card m-b-30">
+        <div class="card-header bg-white">
+          <h5 class="card-title text-black mb-0">À propos du vendeur</h5>
+        </div>
+        <div class="card-body">
+          <div class="xp-social-profile">
+            <div class="xp-social-profile-top">
+              <div class="row">
+                <div class="col-3">
+                  <div class="xp-social-profile-star py-3">
+                    <i class="mdi mdi-star font-24"></i>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="xp-social-profile-avatar text-center">
+                    <img
+                      src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                      alt="user-profile"
+                      class="rounded-circle img-fluid profile-image"
+                    />
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="xp-social-profile-menu text-right py-3">
+                    <i class="mdi mdi-dots-horizontal font-24"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="xp-social-profile-middle text-center">
+              <div class="row">
+                <div class="col-12">
+                  <div class="xp-social-profile-title">
+                    <h5 class="my-1 text-black">
+                      {{ productDetails?.vendorDetails?.name }}
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
 
+            <div class="xp-social-profile-bottom text-center">
+              <div class="row">
+                <div class="col-4">
+                  <div class="xp-social-profile-followers pt-3">
+                    <i class="fa-solid fa-phone" style="color: #38a543"></i>
+                    <p class="mb-0 text-muted">Tel</p>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="xp-social-profile-followers pt-3">
+                    <h5 class="text-black my-1">278k</h5>
+                    <p class="mb-0 text-muted">Annonces</p>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="xp-social-profile-followers pt-3">
+                    <i class="fa-brands fa-whatsapp" style="color: #38a543"></i>
+                    <p class="mb-0 text-muted">WhatsApp</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-        
-        <div class="col-md-6">
-            <div class="card m-b-30">
-                <div class="card-header bg-white">
-                    <h5 class="card-title text-black mb-0">À propos du vendeur</h5>
-                </div>
-                <div class="card-body">
-                    <div class="xp-social-profile">
-            
-                        <div class="xp-social-profile-top">
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="xp-social-profile-star py-3">
-                                        <i class="mdi mdi-star font-24"></i>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                <div class="xp-social-profile-avatar text-center">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user-profile" class="rounded-circle img-fluid profile-image">
-                                </div>
-                            </div>
-                                <div class="col-3">
-                                    <div class="xp-social-profile-menu text-right py-3">
-                                        <i class="mdi mdi-dots-horizontal font-24"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="xp-social-profile-middle text-center">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="xp-social-profile-title">
-                                        <h5 class="my-1 text-black">{{ productDetails?.vendorDetails?.name }}</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                      
-                        <div class="xp-social-profile-bottom text-center">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="xp-social-profile-followers pt-3">
-                                    <i class="fa-solid fa-phone" style="color: #38a543;"></i>
-                                    <p class="mb-0 text-muted">Tel</p>
-                                </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="xp-social-profile-followers pt-3">
-                                        <h5 class="text-black my-1">278k</h5>
-                                        <p class="mb-0 text-muted">Annonces</p>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    
-                                        <div class="xp-social-profile-followers pt-3">
-                                        <i class="fa-brands fa-whatsapp" style="color: #38a543;"></i>
-                                        <p class="mb-0 text-muted">WhatsApp</p>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
 </div>
-</div>
-</div>
-
-  
-
