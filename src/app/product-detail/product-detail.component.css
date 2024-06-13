@@ -209,7 +209,8 @@ body {
 .modal {
   display: none; /* Hidden by default */
   position: fixed;
-  z-index: 1001; /* Ensure modal is above other content */
+  z-index: 10001;
+    /* Ensure modal is above other content */
   left: 0;
   top: 0;
   width: 100%;
@@ -270,34 +271,8 @@ body {
   z-index: 999;
 }
 
-.prev,
-.next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 30px;
-  cursor: pointer;
-  color: white;
-  background-color: #fd7e14; /* Orange background color */
-  padding: 10px;
-  transition: 0.3s ease;
-  border-radius: 50%; /* Rounded shape */
-  z-index: 1100; /* Ensure arrows are above modal content */
-  text-decoration: none; /* Remove underline */
-}
 
-.prev {
-  left: 15px; /* Adjust position */
-}
 
-.next {
-  right: 15px; /* Adjust position */
-}
-
-.prev:hover,
-.next:hover {
-  background-color: #e65c00; /* Darker orange on hover */
-}
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
