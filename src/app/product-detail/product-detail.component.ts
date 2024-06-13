@@ -10,7 +10,7 @@ import {
 import { Product } from '../service/model/model';
 import { CarouselModule } from 'primeng/carousel';
 import { ProductsService } from '../service/products.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { AuthService } from '../service/auth.service';
 import { FavoriteService } from '../service/favorite.service';
@@ -18,13 +18,15 @@ import { FavoriteService } from '../service/favorite.service';
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, CarouselModule, TranslateModule],
+  imports: [CommonModule, CarouselModule, TranslateModule,RouterLink],
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css'],
 })
 export class ProductDetailComponent implements OnInit {
   productId!: number;
-  productDetails!: any; // Use appropriate type
+  productDetails!: any; // Utilisez le type approprié
+  relatedProducts: any[] = [];
+  pagedProducts: any[] = [];
   isTokenAvailable = false;
   isFavorite = false;
   currentImageIndex = 0;
@@ -38,7 +40,7 @@ export class ProductDetailComponent implements OnInit {
     private productService: ProductsService,
     private favoriteService: FavoriteService,
     private cdr: ChangeDetectorRef,
-    private renderer: Renderer2 // Inject Renderer2
+    private renderer: Renderer2 // Injecter Renderer2
   ) {}
 
   ngOnInit() {
@@ -50,16 +52,35 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  fetchProductDetails() {
+  fetchProductDetails(): void {
+    console.log('Fetching product details for productId:', this.productId);
+    
     this.productService.getProductDetails(this.productId).subscribe(
       (response: any) => {
+        console.log('Product details fetched successfully:', response);
         this.productDetails = response;
+        this.fetchRelatedProducts(response.subCategoryId); // Appel pour récupérer les produits associés
       },
       (error) => {
         console.error('Error fetching product details:', error);
       }
     );
   }
+
+  fetchRelatedProducts(subCategoryId: number): void {
+    console.log(`Fetching related products for subCategoryId: ${subCategoryId}`);
+    this.productService.getAllProductsBySubCategoryId(subCategoryId, 0, 10).subscribe(
+      (response: any) => {
+        console.log('Related products fetched', response);
+        this.pagedProducts = response.data;
+      },
+      error => {
+        console.error('Error fetching related products:', error);
+      }
+    );
+  }
+
+
 
   checkIfProductIsFavorite(productId: number): void {
     if (this.isTokenAvailable) {
@@ -92,7 +113,7 @@ export class ProductDetailComponent implements OnInit {
   openFullScreenGallery(): void {
     if (this.imageModal) {
       this.imageModal.nativeElement.style.display = 'block';
-      this.renderer.addClass(document.body, 'modal-open'); // Add class to body
+      this.renderer.addClass(document.body, 'modal-open'); // Ajouter la classe au body
       this.imageModal.nativeElement.addEventListener(
         'touchstart',
         this.touchStart.bind(this)
@@ -111,7 +132,7 @@ export class ProductDetailComponent implements OnInit {
   closeFullScreenGallery(): void {
     if (this.imageModal) {
       this.imageModal.nativeElement.style.display = 'none';
-      this.renderer.removeClass(document.body, 'modal-open'); // Remove class from body
+      this.renderer.removeClass(document.body, 'modal-open'); // Supprimer la classe du body
       this.imageModal.nativeElement.removeEventListener(
         'touchstart',
         this.touchStart.bind(this)
@@ -163,5 +184,13 @@ export class ProductDetailComponent implements OnInit {
     } else if (this.startX - endX < -50) {
       this.previousImage();
     }
+  }
+
+  shortenProductName(name: string): string {
+    const maxLength = 19;
+    if (name.length > maxLength) {
+      return name.substr(0, maxLength) + '...';
+    }
+    return name;
   }
 }

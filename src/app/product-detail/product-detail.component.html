@@ -75,10 +75,10 @@
     <div class="col-lg-6 col-md-12">
       <div class="card product-box">
         <div class="d-flex justify-content-between align-items-center">
-          <strong class="name" style="max-width: 50%">{{
-            productDetails?.name
-          }}</strong>
-          <span class="pro-price">{{ productDetails?.price }} MRU</span>
+          <strong class="name " style="max-width: 50%">
+            {{ productDetails?.name }}
+          </strong>
+          <span class="pro-price product-prix">{{ productDetails?.price }} MRU</span>
         </div>
         <div class="card-body">
           <div class="product_meta">
@@ -106,12 +106,19 @@
                       : ""
                   }}
                 </strong>
+
+                <p>
+                  {{ productDetails?.subCategory }}
+                </p>
+                
               </span>
               <span class="tagged_as">
                 <strong
                   ><i class="fa-solid fa-eye" style="color: #fd7e14"></i>
                   {{ productDetails?.hit }}</strong
                 >
+                
+                
               </span>
             </div>
             <p>
@@ -252,6 +259,68 @@
       </div>
       <a class="prev" (click)="previousImage()">&#10094;</a>
       <a class="next" (click)="nextImage()">&#10095;</a>
+    </div>
+  </div>
+
+
+
+  <div class="col-md-12 mx-md-50">
+    <div class="title">
+      <span>
+        <i class="fa-solid fa-list fa-beat-fade" style="color: #f08c00; border: 1px solid; padding: 0.1em;"></i>
+        {{ 'produit.titre' | translate }} <!-- Utilisation de la clé de traduction 'produit.titre' -->
+      </span>
+    </div>
+    <div class="tab-class text-center">
+      <div class="tab-content produit mx-md-5">
+        <div id="tab-1" class="tab-pane fade show p-0 active">
+          <div class="row flex-wrap flex-lg-nowrap g-2">
+            <div class="row g-2" *ngIf="pagedProducts.length > 0; else noProductTemplate">
+              <div class="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2" [routerLink]="['/product-details', product.id]"
+                *ngFor="let product of pagedProducts">
+                <div class="rounded position-relative produit-item" style="cursor: pointer;">
+                  <div class="produit-img">
+                    <img [src]="product.images && product.images.length > 0 ? product.images[0].imageUrl : 'default-image-url'"
+                      [alt]="product.name" class="img-fluid w-100 rounded-top" alt="" loading="lazy">
+                  </div>
+                  <div class="text-white bg-secondary px-2 py-1 rounded position-absolute"
+                    style="top: 5px; right: 5px; font-size: 0.9rem;">
+                    <i class="fa fa-eye fa-xs"></i> {{ product.hit }}
+                  </div>
+                  <div class="border-top-0 rounded-bottom products-border" [dir]="'ltr' | translate">
+                    <h6 class="text-dark fw-bold mb-0"
+                      style="font-size: 0.8rem; text-overflow: ellipsis; white-space: nowrap; font-weight: 700;">
+                      {{ shortenProductName(product.name) }}
+                    </h6>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <p class="mb-0" style="font-size: 1.0rem;"></p>
+                      <p class="mb-0 text-right" style="font-size: 0.7rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        <i class="fa-solid fa-location-dot fa-flip-horizontal" style="color: #fd7e14;"></i> {{
+                        product.region }}, {{
+                        product.subRegion }}
+                      </p>
+                  
+                    <div class="product-border">
+                      <a class="btn  px-2 cv-global-gradient cv-p-price font-p-m m-0 px-2 py-1  "
+                        style="font-size: 0.8rem; width: 100%; color: #fff;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{
+                        product.price + " MRU" }}</a>
+                      </div>
+                      </div>
+                      </div>
+                </div>
+              </div>
+            </div>
+            <ng-template #noProductTemplate>
+              <div class="col-12 text-center py-5">
+                <img src="../../assets/img/empty-box.png" alt="No products" class="img-fluid" style="max-width: 200px;" loading="lazy">
+                <p class="text-center mt-3">{{ 'produit.aucun_produit' | translate }}</p>
+                <!-- Utilisation de la clé de traduction 'produit.aucun_produit' -->
+              </div>
+            </ng-template>
+          </div>
+  
+        </div>
+      </div>
     </div>
   </div>
 </div>
