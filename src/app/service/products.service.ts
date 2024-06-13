@@ -29,7 +29,7 @@ export class ProductsService {
     }
   }
 
-  getAllProductsPaged(page: number = 0, size: number = 11): Observable<any> {
+  getAllProductsPaged(page: number , size: number): Observable<any> {
     const url = `${this.apiUrl}/products?page=${page}&size=${size}`;
     if (this.cacheService.has(url)) {
       return this.cacheService.get(url);
@@ -40,7 +40,7 @@ export class ProductsService {
     }
   }
 
-  getAllProductsBySubCategoryId(categoryId: number, page: number = 0, size: number = 10): Observable<any> {
+  getAllProductsBySubCategoryId(categoryId: number, page: number , size: number ): Observable<any> {
     const url = `${this.apiUrl}/products/productsBySubCategoryId/${categoryId}?page=${page}&size=${size}`;
     if (this.cacheService.has(url)) {
       return this.cacheService.get(url);

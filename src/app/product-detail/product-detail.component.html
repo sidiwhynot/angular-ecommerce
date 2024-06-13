@@ -1,4 +1,4 @@
-<div class="container bootdey">
+<div class="container bootdey" [dir]="'dir' | translate"  >
   <div class="row">
     <!-- Main product details section -->
     <aside class="col-lg-6 col-md-12 position-relative">
@@ -8,7 +8,7 @@
         <!-- Clickable main image -->
         <a class="rounded-4 w-100" (click)="showImage(currentImageIndex)">
           <img
-            style="width: 100%; height: 300px; margin: auto"
+            style="width: 100%; height: 300px; margin: auto;filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, .5));"
             class="rounded-4 fit"
             [src]="
               productDetails?.images && productDetails.images.length > 0
@@ -74,12 +74,15 @@
     <!-- Product details section -->
     <div class="col-lg-6 col-md-12">
       <div class="card product-box">
-        <div class="d-flex justify-content-between align-items-center">
-          <strong class="name " style="max-width: 50%">
+        <div class="d-flex align-items-center">
+          <span class="name">
             {{ productDetails?.name }}
-          </strong>
-          <span class="pro-price product-prix">{{ productDetails?.price }} MRU</span>
+          </span>
+          <span class="pro-price product-prix">
+            {{ productDetails?.price }} MRU
+          </span>
         </div>
+        
         <div class="card-body">
           <div class="product_meta">
             <div>
@@ -121,13 +124,13 @@
                 
               </span>
             </div>
-            <p>
+            <p [dir]="'ltr' | translate">
               <button class="btn btn-round custom-border" type="button">
                 <i class="fa fa-phone"></i> +222
                 {{ productDetails?.vendorDetails?.phoneNumber }}
               </button>
             </p>
-            <p>
+            <p [dir]="'ltr' | translate" >
               <button class="btn btn-round custom-border2" type="button">
                 <i class="fa-brands fa-square-whatsapp"></i> +222
                 {{ productDetails?.vendorDetails?.whatsappNumber }}
@@ -254,13 +257,28 @@
       >
         <img
           [src]="image.imageUrl"
-          style="width: 100%; height: 100vh; object-fit: contain"
+          style="width: 100%; height: 100vh; object-fit: contain; filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, .5));"
         />
       </div>
-      <a class="prev" (click)="previousImage()">&#10094;</a>
-      <a class="next" (click)="nextImage()">&#10095;</a>
+      
+      <!-- Condition pour afficher les flèches seulement si nécessaire -->
+      <button
+        *ngIf="productDetails?.images && productDetails.images.length > 1 && shouldShowNavigation()"
+        class="cv-carousel-btn cv-prev-btn btn position-absolute"
+        (click)="previousImage()"
+      >
+        <i class="fa fa-chevron-left"></i>
+      </button>
+      <button
+        *ngIf="productDetails?.images && productDetails.images.length > 1 && shouldShowNavigation()"
+        class="cv-carousel-btn cv-next-btn btn position-absolute"
+        (click)="nextImage()"
+      >
+        <i class="fa fa-chevron-right"></i>
+      </button>
     </div>
   </div>
+  
 
 
 
@@ -268,7 +286,7 @@
     <div class="title">
       <span>
         <i class="fa-solid fa-list fa-beat-fade" style="color: #f08c00; border: 1px solid; padding: 0.1em;"></i>
-        {{ 'produit.titre' | translate }} <!-- Utilisation de la clé de traduction 'produit.titre' -->
+        Annonces Similaires  <!-- Utilisation de la clé de traduction 'produit.titre' -->
       </span>
     </div>
     <div class="tab-class text-center">

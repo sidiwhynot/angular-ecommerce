@@ -44,6 +44,7 @@ export class ProductDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    
     this.route.params.subscribe((params) => {
       this.productId = +params['productId'];
       this.fetchProductDetails();
@@ -51,6 +52,8 @@ export class ProductDetailComponent implements OnInit {
       this.checkIfProductIsFavorite(this.productId);
     });
   }
+
+
 
   fetchProductDetails(): void {
     console.log('Fetching product details for productId:', this.productId);
@@ -69,7 +72,7 @@ export class ProductDetailComponent implements OnInit {
 
   fetchRelatedProducts(subCategoryId: number): void {
     console.log(`Fetching related products for subCategoryId: ${subCategoryId}`);
-    this.productService.getAllProductsBySubCategoryId(subCategoryId, 0, 10).subscribe(
+    this.productService.getAllProductsBySubCategoryId(subCategoryId, 0, 8).subscribe(
       (response: any) => {
         console.log('Related products fetched', response);
         this.pagedProducts = response.data;
@@ -110,6 +113,8 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
+  
+
   openFullScreenGallery(): void {
     if (this.imageModal) {
       this.imageModal.nativeElement.style.display = 'block';
@@ -122,8 +127,38 @@ export class ProductDetailComponent implements OnInit {
         'touchend',
         this.touchEnd.bind(this)
       );
+      
     }
   }
+
+  shouldShowNavigation(): boolean {
+    if (!this.imageModal || !this.imageModal.nativeElement) {
+      return false; // Si imageModal ou nativeElement est undefined, retourner false
+    }
+  
+    const containerWidth = this.imageModal.nativeElement.offsetWidth; // Largeur du conteneur modal
+    if (!containerWidth) {
+      return false; // Si la largeur du conteneur est 0 ou undefined, retourner false
+    }
+  
+    if (!this.productDetails?.images || this.productDetails.images.length <= 1) {
+      return false; // Ne pas afficher les flèches s'il y a 0 ou 1 image
+    }
+  
+    const totalImagesWidth = this.productDetails.images.length * containerWidth; // Largeur totale des images
+  
+    // Récupérer l'index de l'image courante
+    const currentIndex = this.currentImageIndex;
+    // Vérifier si on peut aller à gauche ou à droite
+    const canGoLeft = currentIndex > 0;
+    const canGoRight = currentIndex < this.productDetails.images.length - 1;
+  
+    // Afficher la flèche de gauche si on peut aller à gauche et si l'index de l'image actuelle est > 0
+    // Afficher la flèche de droite si on peut aller à droite et si l'index de l'image actuelle est < longueur du tableau - 1
+    return canGoLeft || canGoRight;
+  }
+  
+  
 
   changeMainImage(index: number): void {
     this.currentImageIndex = index;
