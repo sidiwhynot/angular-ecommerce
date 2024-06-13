@@ -384,6 +384,18 @@ h6 {
   border-top: 0;
 }
 
+.product-border {
+  font-size: 90%;
+  color: #fff;
+  border-radius: 9px 0 0 0px;
+  /* Coins arrondis en haut à droite et en bas à droite */
+  background: #F56B2A;
+  letter-spacing: 0px;
+  background: linear-gradient(90deg, #F56B2A 0%, #F79A3C 100%);
+  width: 50%;
+  /* Prendre 50% de la largeur du conteneur parent */
+  margin-left: auto;
+}
 /*----------no products--------------*/
 .clearfix:before,
 .clearfix:after {
