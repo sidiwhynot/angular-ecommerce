@@ -60,7 +60,7 @@
           *ngFor="let image of productDetails?.images; let i = index"
           class="border mx-1 rounded-2"
           style="cursor: pointer"
-        >
+          (click)="changeMainImage(i)">
           <img
             width="60"
             height="60"
@@ -129,101 +129,101 @@
           </div>
         </div>
       </div>
-
-      <div class="card product-box">
-        <div>
-          <strong style="color: #fd7e14">Description Section</strong>
-          <p style="font-size: 13px">{{ productDetails?.description }}</p>
-        </div>
+    </div>
+    <div class="col-lg-6 col-md-12">
+    <div class="card product-box">
+      <div>
+        <strong style="color: #fd7e14">Description Section</strong>
+        <p style="font-size: 13px">{{ productDetails?.description }}</p>
       </div>
+    </div>
 
-      <div class="card product-box">
-        <div>
-          <strong style="color: #fd7e14">Security Tips Section</strong>
-          <p style="font-size: 11px">
-            {{ "product-detail.security_tips" | translate }}
-          </p>
-        </div>
+    <div class="card product-box">
+      <div>
+        <strong style="color: #fd7e14">Security Tips Section</strong>
+        <p style="font-size: 11px">
+          {{ "product-detail.security_tips" | translate }}
+        </p>
       </div>
     </div>
   </div>
 
+
   <!-- Seller info section -->
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card m-b-30">
-        <div class="card-header bg-white">
-          <h5 class="card-title text-black mb-0">
-            {{ "product-detail.seller_info_section" | translate }}
-          </h5>
-        </div>
-        <div class="card-body">
-          <div class="xp-social-profile">
-            <div class="xp-social-profile-top">
-              <div class="row">
-                <div class="col-3">
-                  <div class="xp-social-profile-star py-3">
-                    <i class="mdi mdi-star font-24"></i>
-                  </div>
+
+  <div class="col-md-6">
+    <div class="card m-b-30">
+      <div class="card-header bg-white">
+        <h5 class="card-title text-black mb-0">
+          {{ "product-detail.seller_info_section" | translate }}
+        </h5>
+      </div>
+      <div class="card-body">
+        <div class="xp-social-profile">
+          <div class="xp-social-profile-top">
+            <div class="row">
+              <div class="col-3">
+                <div class="xp-social-profile-star py-3">
+                  <i class="mdi mdi-star font-24"></i>
                 </div>
-                <div class="col-6">
-                  <div class="xp-social-profile-avatar text-center">
-                    <img
-                      [src]="
-                        productDetails?.vendorDetails?.profileUrl ||
-                        'https://bootdey.com/img/Content/avatar/avatar7.png'
-                      "
-                      alt="user-profile"
-                      class="rounded-circle img-fluid profile-image"
-                      loading="lazy"
-                    />
-                  </div>
+              </div>
+              <div class="col-6">
+                <div class="xp-social-profile-avatar text-center">
+                  <img
+                    [src]="
+                      productDetails?.vendorDetails?.profileUrl ||
+                      'https://bootdey.com/img/Content/avatar/avatar7.png'
+                    "
+                    alt="user-profile"
+                    class="rounded-circle img-fluid profile-image"
+                    loading="lazy"
+                  />
                 </div>
-                <div class="col-3">
-                  <div class="xp-social-profile-menu text-right py-3">
-                    <i class="mdi mdi-dots-horizontal font-24"></i>
-                  </div>
+              </div>
+              <div class="col-3">
+                <div class="xp-social-profile-menu text-right py-3">
+                  <i class="mdi mdi-dots-horizontal font-24"></i>
                 </div>
               </div>
             </div>
-            <div class="xp-social-profile-middle text-center">
-              <div class="row">
-                <div class="col-12">
-                  <div class="xp-social-profile-title">
-                    <h5 class="my-1 text-black">
-                      {{ productDetails?.vendorDetails?.name }}
-                    </h5>
-                  </div>
+          </div>
+          <div class="xp-social-profile-middle text-center">
+            <div class="row">
+              <div class="col-12">
+                <div class="xp-social-profile-title">
+                  <h5 class="my-1 text-black">
+                    {{ productDetails?.vendorDetails?.name }}
+                  </h5>
                 </div>
               </div>
             </div>
-            <div class="xp-social-profile-bottom text-center">
-              <div class="row">
-                <div class="col-4">
-                  <div class="xp-social-profile-followers pt-3">
-                    <i class="fa-solid fa-phone" style="color: #38a543"></i>
-                    <p class="mb-0 text-muted">
-                      {{ "product-detail.seller_phone" | translate }}
-                    </p>
-                  </div>
+          </div>
+          <div class="xp-social-profile-bottom text-center">
+            <div class="row">
+              <div class="col-4">
+                <div class="xp-social-profile-followers pt-3">
+                  <i class="fa-solid fa-phone" style="color: #38a543"></i>
+                  <p class="mb-0 text-muted">
+                    {{ "product-detail.seller_phone" | translate }}
+                  </p>
                 </div>
-                <div class="col-4">
-                  <div class="xp-social-profile-followers pt-3">
-                    <h5 class="text-black my-1">
-                      {{ "product-detail.seller_ads" | translate }}
-                    </h5>
-                    <p class="mb-0 text-muted">
-                      {{ "product-detail.seller_ads" | translate }}
-                    </p>
-                  </div>
+              </div>
+              <div class="col-4">
+                <div class="xp-social-profile-followers pt-3">
+                  <h5 class="text-black my-1">
+                    {{ "product-detail.seller_ads" | translate }}
+                  </h5>
+                  <p class="mb-0 text-muted">
+                    {{ "product-detail.seller_ads" | translate }}
+                  </p>
                 </div>
-                <div class="col-4">
-                  <div class="xp-social-profile-followers pt-3">
-                    <i class="fa-brands fa-whatsapp" style="color: #38a543"></i>
-                    <p class="mb-0 text-muted">
-                      {{ "product-detail.seller_whatsapp" | translate }}
-                    </p>
-                  </div>
+              </div>
+              <div class="col-4">
+                <div class="xp-social-profile-followers pt-3">
+                  <i class="fa-brands fa-whatsapp" style="color: #38a543"></i>
+                  <p class="mb-0 text-muted">
+                    {{ "product-detail.seller_whatsapp" | translate }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -232,6 +232,9 @@
       </div>
     </div>
   </div>
+
+  </div>
+
 
   <!-- Full-screen image gallery modal -->
   <div #imageModal class="modal">

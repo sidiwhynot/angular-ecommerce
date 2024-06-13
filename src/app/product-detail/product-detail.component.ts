@@ -104,6 +104,10 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
+  changeMainImage(index: number): void {
+    this.currentImageIndex = index;
+  }
+
   closeFullScreenGallery(): void {
     if (this.imageModal) {
       this.imageModal.nativeElement.style.display = 'none';
