@@ -22,8 +22,38 @@
             "
           />
         </a>
+        <span
+          class="tagged_as text-white px-2 py-1 rounded"
+          style="
+            background-color: #fff;
+            cursor: pointer;
+            position: absolute;
+            top: 6%;
+            left: 96%;
+            transform: translate(-50%, -50%);
+          "
+          [ngClass]="{ inactive: !isTokenAvailable }"
+          (click)="isTokenAvailable && toggleFavorite(productDetails.id)"
+        >
+          <i
+            class="fas fa-heart"
+            [ngStyle]="{ color: isFavorite ? 'red' : '#fd7e14' }"
+          ></i>
+        </span>
+        <span
+          class="tagged_as text-white px-2 py-1 rounded icon1"
+          style="
+            background-color: #fff;
+            cursor: pointer;
+            position: absolute;
+            top: 18%;
+            left: 96%;
+            transform: translate(-50%, -50%);
+          "
+        >
+          <i class="fa-solid fa-share-nodes" style="color: #fd7e14"></i>
+        </span>
       </div>
-
       <!-- Thumbnail images -->
       <div class="d-flex justify-content-center mb-3">
         <div
