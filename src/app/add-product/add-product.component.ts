@@ -9,6 +9,10 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { FieldsetModule } from 'primeng/fieldset';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
+import * as WebpConverter from 'webp-converter';
+
+
+
 
 import { ToastrService } from 'ngx-toastr';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -17,7 +21,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-add-product',
   standalone: true,
-  imports: [FormsModule,CommonModule,FieldsetModule,FileUploadModule, TranslateModule ],
+  imports: [FormsModule,CommonModule,FieldsetModule,FileUploadModule, TranslateModule, ],
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css',
   providers: [MessageService],
@@ -134,14 +138,75 @@ export class AddProductComponent implements OnInit {
 
   onFileSelect(event: any) {
     const files: File[] = Array.from(event.target.files);
-    for (let i = 0; i < files.length; i++) {
+  
+    // Limiter le nombre de fichiers à 6
+    for (let i = 0; i < Math.min(files.length, 6 - this.images.length); i++) {
       const file = files[i];
       const fileURL = URL.createObjectURL(file);
+  
+      // Ajouter l'image originale à selectedImages et images
       this.selectedImages.push({ file, url: fileURL });
-      this.images.push(file);
+    
+  
+      // Vérifier si le fichier est une image et si la conversion en WebP est possible
+      if (file.type.startsWith('image/')) {
+        this.convertToWebP(file).then((webpFile: File) => {
+          const webpURL = URL.createObjectURL(webpFile);
+  
+          // Ajouter l'image convertie en WebP à selectedImages et images
+
+          this.images.push(webpFile);
+  
+          // Afficher dans la console pour vérification
+          console.log('Fichier WebP ajouté:', webpFile);
+        }).catch((error: any) => {
+          console.error('Erreur lors de la conversion en WebP:', error);
+        });
+      }
     }
+  
     console.log('Fichiers sélectionnés:', this.images);
   }
+
+  convertToWebP(file: File): Promise<File> {
+    return new Promise((resolve, reject) => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      if (!ctx) {
+        reject(new Error('Canvas context could not be created.'));
+        return;
+      }
+
+      const image = new Image();
+      image.onload = () => {
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx.drawImage(image, 0, 0);
+
+        canvas.toBlob((blob) => {
+          if (!blob) {
+            reject(new Error('Failed to convert image to blob.'));
+            return;
+          }
+
+          const webpFile = new File([blob], file.name.replace(/\.\w+$/, '.webp'), {
+            type: 'image/webp'
+          });
+
+          resolve(webpFile);
+        }, 'image/webp', 0.8); // Qualité de l'image WebP (0.0 - 1.0)
+      };
+
+      image.onerror = (error) => {
+        reject(error);
+      };
+
+      image.src = URL.createObjectURL(file);
+    });
+  }
+
+
 
   onCategoryChange(categoryId: string) {
     const selectedCategory = this.categories.find(category => category.id === parseInt(categoryId, 10));

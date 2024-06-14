@@ -1,6 +1,6 @@
 {  "dir":"ltr",
     "ajouter_annonce": {
-      "titre": "Ajoutez votre annonce gratuitement !!",
+      "titre": "Publiez votre annonce gratuitement !!",
       "nom_produit": "Nom du produit",
       "entrer_nom_produit": "Entrez le nom du produit",
       "categorie": "Catégorie",
@@ -10,7 +10,7 @@
       "region": "Région",
       "selectionner_region": "Sélectionnez une région...",
       "sous_region": "Sous-région",
-      "selectionner_sous_region": "Sélectionnez une sous-région...",
+      "selectionner_sous_region": "Sélectionnez une ville...",
       "marque": "Marque",
       "entrer_marque": "Entrez la marque",
       "prix_mru": "Prix en MRU",

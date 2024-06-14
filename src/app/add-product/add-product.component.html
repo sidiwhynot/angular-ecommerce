@@ -91,17 +91,19 @@
                 translate }}</div>
             </div>
             <div class="form-group">
-              <input type="file" id="images" name="images" multiple (change)="onFileSelect($event)" accept="image/*"
-                class="form-control-file" required>
-              <small class="form-text text-muted">{{ 'ajouter_annonce.selectionner_images' | translate }}</small>
-              <div *ngIf="productForm.submitted && selectedImages.length === 0" class="text-danger">{{
-                'ajouter_annonce.champ_obligatoire' | translate }}</div>
+              <!-- Input pour sélectionner les images -->
+              <input type="file" id="images" name="images" multiple (change)="onFileSelect($event)" accept="image/*" class="form-control-file" required>
+              <!-- Message d'erreur si aucune image sélectionnée -->
+              <div *ngIf="productForm.submitted && selectedImages.length === 0" class="text-danger">{{ 'ajouter_annonce.champ_obligatoire' | translate }}</div>
+              <!-- Message d'erreur si plus de 6 images sélectionnées -->
+              <div *ngIf="images.length > 5" class="text-danger">Vous ne pouvez plus sélectionner d'autres images, vous avez atteint la limite de 6 images</div>
             </div>
+            
             <div class="container bootdey">
               <div class="row">
                 <div class="col-lg-6 col-md-12">
                   <div class="pro-img-list">
-                    <ng-container *ngFor="let image of selectedImages" style="width: 100%;">
+                    <ng-container *ngFor="let image of selectedImages">
                       <a>
                         <img [src]="image.url" class="product-image img-fluid" loading="lazy">
                       </a>
@@ -111,7 +113,7 @@
               </div>
             </div>
             <button class="custom-border" type="submit"
-              [disabled]="!productForm.form.valid || selectedImages.length === 0">{{
+             >{{
               'ajouter_annonce.bouton_enregistrer' | translate }}</button>
           </form>
         </div>
