@@ -147,17 +147,9 @@ export class ProductDetailComponent implements OnInit {
   
     const totalImagesWidth = this.productDetails.images.length * containerWidth; // Largeur totale des images
   
-    // Récupérer l'index de l'image courante
-    const currentIndex = this.currentImageIndex;
-    // Vérifier si on peut aller à gauche ou à droite
-    const canGoLeft = currentIndex > 0;
-    const canGoRight = currentIndex < this.productDetails.images.length - 1;
-  
-    // Afficher la flèche de gauche si on peut aller à gauche et si l'index de l'image actuelle est > 0
-    // Afficher la flèche de droite si on peut aller à droite et si l'index de l'image actuelle est < longueur du tableau - 1
-    return canGoLeft || canGoRight;
+    // Vérifier si la largeur totale des images est supérieure à la largeur du conteneur (défilement nécessaire)
+    return totalImagesWidth > containerWidth;
   }
-  
   
 
   changeMainImage(index: number): void {

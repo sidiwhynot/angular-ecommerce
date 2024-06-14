@@ -73,15 +73,16 @@
 
     <!-- Product details section -->
     <div class="col-lg-6 col-md-12">
-      <div class="card product-box">
-        <div class="d-flex align-items-center">
-          <span class="name">
-            {{ productDetails?.name }}
-          </span>
-          <span class="pro-price product-prix">
-            {{ productDetails?.price }} MRU
-          </span>
-        </div>
+        <div class="bg-white position-relative cv-product-info pb-3">
+          <div class="card product-box">
+    
+    
+            <div class="d-flex justify-content-between mb-2">
+              <h1 class="p-title px-3 font-p-r pt-1">  {{ productDetails?.name }}</h1>
+              <div ><div  class="price font-p-s-b  product-prix"><label class="px-2"> {{ productDetails?.price }} MRU</label>
+              </div></div></div>
+
+         
         
         <div class="card-body">
           <div class="product_meta">
@@ -139,6 +140,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
     <div class="col-lg-6 col-md-12">
     <div class="card product-box">
@@ -221,7 +223,8 @@
               <div class="col-4">
                 <div class="xp-social-profile-followers pt-3">
                   <h5 class="text-black my-1">
-                    {{ "product-detail.seller_ads" | translate }}
+                    
+                    {{ productDetails?.vendorDetails?.productsCount }}
                   </h5>
                   <p class="mb-0 text-muted">
                     {{ "product-detail.seller_ads" | translate }}
