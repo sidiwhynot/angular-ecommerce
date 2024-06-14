@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, Inject, Injector,HostListener, inject, OnInit, PLATFORM_ID } from '@angular/core';
 
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule, ViewportScroller, isPlatformBrowser } from '@angular/common';
 
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
@@ -65,8 +65,8 @@ export class AppComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    @Inject('scrollPageToTop') private scrollPageToTop: Function,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private viewportScroller: ViewportScroller
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
@@ -84,13 +84,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.events.subscribe((val) => {
-      // Si la navigation est réussie, on fait défiler la page vers le haut
-      if (val instanceof NavigationEnd) {
-        this.scrollPageToTop();
-      }
-    });
-
+    if (isPlatformBrowser(this.platformId)) {
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.viewportScroller.scrollToPosition([0, 0]);
+        }
+      });
+    }
     if (this.isBrowser) {
       this.translateService.setDefaultLang('fr');
       this.translateService.use('fr');

@@ -25,7 +25,7 @@
         <span
           class="tagged_as text-white px-2 py-1 rounded"
           style="
-            background-color: #fff;
+            background-color: #F56B2A;
             cursor: pointer;
             position: absolute;
             top: 6%;
@@ -37,22 +37,24 @@
         >
           <i
             class="fas fa-heart"
-            [ngStyle]="{ color: isFavorite ? 'red' : '#fd7e14' }"
+            [ngStyle]="{ color: isFavorite ? 'red' : '#fff' }"
           ></i>
         </span>
         <span
-          class="tagged_as text-white px-2 py-1 rounded icon1"
-          style="
-            background-color: #fff;
-            cursor: pointer;
-            position: absolute;
-            top: 18%;
-            left: 96%;
-            transform: translate(-50%, -50%);
-          "
-        >
-          <i class="fa-solid fa-share-nodes" style="color: #fd7e14"></i>
-        </span>
+        class="tagged_as  px-2 py-1 rounded icon1"
+        style="
+          background-color: #F56B2A;
+          cursor: pointer;
+          position: absolute;
+          top: 18%;
+          left: 96%;
+          transform: translate(-50%, -50%);
+        "
+        (click)="share()"
+      >
+        <i class="fa-solid fa-share-nodes" style="color: #fff"></i>
+      </span>
+      
       </div>
       <!-- Thumbnail images -->
       <div class="d-flex justify-content-center mb-3">
@@ -126,17 +128,18 @@
               </span>
             </div>
             <p [dir]="'ltr' | translate">
-              <button class="btn btn-round custom-border" type="button">
+              <a [href]="'tel:+222' + productDetails?.vendorDetails?.phoneNumber" class="btn btn-round custom-border" type="button">
                 <i class="fa fa-phone"></i> +222
                 {{ productDetails?.vendorDetails?.phoneNumber }}
-              </button>
+              </a>
             </p>
-            <p [dir]="'ltr' | translate" >
-              <button class="btn btn-round custom-border2" type="button">
+            <p [dir]="'ltr' | translate">
+              <a [href]="'https://wa.me/222' + productDetails?.vendorDetails?.whatsappNumber" class="btn btn-round custom-border2" type="button">
                 <i class="fa-brands fa-square-whatsapp"></i> +222
                 {{ productDetails?.vendorDetails?.whatsappNumber }}
-              </button>
+              </a>
             </p>
+            
           </div>
         </div>
       </div>
@@ -214,11 +217,14 @@
             <div class="row">
               <div class="col-4">
                 <div class="xp-social-profile-followers pt-3">
-                  <i class="fa-solid fa-phone" style="color: #38a543"></i>
+                  <a [href]="'tel:+222' + productDetails?.vendorDetails?.phoneNumber">
+                    <i class="fa-solid fa-phone" style="color: #38a543"></i>
+                  </a>
                   <p class="mb-0 text-muted">
                     {{ "product-detail.seller_phone" | translate }}
                   </p>
                 </div>
+                
               </div>
               <div class="col-4">
                 <div class="xp-social-profile-followers pt-3">
@@ -233,12 +239,14 @@
               </div>
               <div class="col-4">
                 <div class="xp-social-profile-followers pt-3">
-                  <i class="fa-brands fa-whatsapp" style="color: #38a543"></i>
+                  <a [href]="'https://wa.me/222' + productDetails?.vendorDetails?.whatsappNumber">
+                    <i class="fa-brands fa-whatsapp" style="color: #38a543"></i>
+                  </a>
                   <p class="mb-0 text-muted">
                     {{ "product-detail.seller_whatsapp" | translate }}
                   </p>
                 </div>
-              </div>
+              </div>              
             </div>
           </div>
         </div>

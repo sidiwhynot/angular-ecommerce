@@ -54,6 +54,20 @@ export class ProductDetailComponent implements OnInit {
   }
 
 
+  share() {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Check out this product',
+        text: 'Here is a product you might like!',
+        url: window.location.href // or a specific URL you want to share
+      })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing', error));
+    } else {
+      alert('Web Share API not supported in your browser.');
+    }
+  }
+
 
   fetchProductDetails(): void {
     console.log('Fetching product details for productId:', this.productId);
